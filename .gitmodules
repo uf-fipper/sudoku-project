@@ -1,3 +1,6 @@
 [submodule "SudokuNet"]
 	path = SudokuNet
 	url = https://github.com/uf-fipper/SudokuNet.git
+[submodule "SudokuServer"]
+	path = SudokuServer
+	url = https://github.com/uf-fipper/SudokuServer.git
