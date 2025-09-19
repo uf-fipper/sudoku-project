@@ -4,3 +4,6 @@
 [submodule "SudokuServer"]
 	path = SudokuServer
 	url = https://github.com/uf-fipper/SudokuServer.git
+[submodule "sudokuFrontEnd"]
+	path = sudokuFrontEnd
+	url = https://github.com/uf-fipper/sudoku-front-end.git
