@@ -1,0 +1,49 @@
+services:
+  mysql:
+    image: mysql:9.4
+    environment:
+      - MYSQL_ROOT_PASSWORD=YourStrongPassword123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sudoku-network
+
+  garnet:
+    image: ghcr.io/microsoft/garnet:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - garnet_data:/data
+    networks:
+      - sudoku-network
+
+  sudoku-server:
+    build:
+      context: ./SudokuServer
+    depends_on:
+      - mysql
+      - garnet
+    ports:
+      - "5000:8080"
+    networks:
+      - sudoku-network
+
+  sudoku-frontend:
+    build:
+      context: ./sudokuFrontEnd
+    ports:
+      - "80:80"
+    depends_on:
+      - sudoku-server
+    networks:
+      - sudoku-network
+
+volumes:
+  mysql_data:
+  garnet_data:
+
+networks:
+  sudoku-network:
+    driver: bridge
